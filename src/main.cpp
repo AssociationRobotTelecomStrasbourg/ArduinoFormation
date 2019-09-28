@@ -12,6 +12,8 @@
 unsigned long time = 100;
 int potentiometer;
 
+String a;
+
 Ultrason ultrason(TRIG, ECHO);
 
 void setup() {
@@ -22,14 +24,17 @@ void setup() {
 }
 
 void loop() {
-  potentiometer = analogRead(POTENTIOMETER);
+  while (!Serial.available());
+  a = Serial.readString();
+  Serial.println(a+a);
+  // potentiometer = analogRead(POTENTIOMETER);
+  //
+  // analogWrite(LED_PWM, map(potentiometer, 0, 1023, 0, 255));
+  //
+  // Serial.println(ultrason.distance());
 
-  analogWrite(LED_PWM, map(potentiometer, 0, 1023, 0, 255));
-
-  Serial.println(ultrason.distance());
-
-  digitalWrite(LED, digitalRead(BUTTON));
-  delay(time);
-  digitalWrite(LED, LOW);
-  delay(time);
+  // digitalWrite(LED, digitalRead(BUTTON));
+  // delay(time);
+  // digitalWrite(LED, LOW);
+  // delay(time);
 }
