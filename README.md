@@ -48,7 +48,7 @@ On lit l'état d'une pin qui est dans le mode `INPUT` avec
 [`digitalRead(pin)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/) qui retourne l'état commme précédemment.
 
 
-![led](led.png)
+![led](resources/led.png)
 ```c++
 const uint8_t LED 13;
 
@@ -62,7 +62,7 @@ void loop() {
 }
 ```
 
-![button_extern_pullup](button_extern_pullup.png)
+![button_extern_pullup](resources/button_extern_pullup.png)
 ```c++
 const uint8_t LED 13;
 const uint8_t BUTTON 2;
@@ -77,7 +77,7 @@ void loop() {
 }
 ```
 
-![button_intern_pullup](button_intern_pullup.png)
+![button_intern_pullup](resources/button_intern_pullup.png)
 ```c++
 pinMode(BUTTON, INPUT_PULLUP);
 ```
