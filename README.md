@@ -1,6 +1,11 @@
+# Formation Arduino
+
+## Sommaire
+
 <!-- TOC -->
 
 - [Formation Arduino](#formation-arduino)
+  - [Sommaire](#sommaire)
   - [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
   - [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
     - [Challenge](#challenge)
@@ -12,8 +17,6 @@
   - [Interruption](#interruption)
 
 <!-- /TOC -->
-
-# Formation Arduino
 
 ## Spécificités de programmation
 Un programme Arduino utilise le langage C/C++.
