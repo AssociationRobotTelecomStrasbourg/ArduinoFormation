@@ -82,12 +82,52 @@ void loop() {
 pinMode(BUTTON, INPUT_PULLUP);
 ```
 
+### Challenge
+- Inverse la position du bouton pour allumer la led par rapport au programme précédent.
+
 ## Gestion du temps
-Différence entre bloquant et non bloquant
-Bloquant
-Non bloquant
-[`delay(ms)`](https://www.arduino.cc/reference/en/language/functions/time/delay/)
-[`millis()`](https://www.arduino.cc/reference/en/language/functions/time/millis/)
+Sur Arduino, deux méthode existent pour interagir avec le temps.
+
+[`delay(ms)`](https://www.arduino.cc/reference/en/language/functions/time/delay/) arrête le programme pendant un certain temps donné en millisecondes. On appel ce mode de fonctionnement bloquant car on ne peut faire autre chose à côté.
+
+On peut ainsi faire clignoter une led.
+
+```c++
+const uint8_t LED 13;
+
+void setup() {
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(LED, HIGH);
+  delay(500);
+  digitalWrite(LED, LOW);
+  delay(500);
+}
+```
+
+[`millis()`](https://www.arduino.cc/reference/en/language/functions/time/millis/) renvoie le temps écoulé le démarrage de l'arduino en millisecondes.
+
+```c++
+const uint8_t LED 13;
+
+void setup() {
+  pinMode(LED, OUTPUT);
+}
+
+void loop() {
+  if (millis() % 1000 < 500)
+    digitalWrite(LED, HIGH);
+  else
+    digitalWrite(LED, LOW);
+}
+
+### Challenges
+1. Fait clignoter une led irrégulièrement.
+2. Fait clignoter deux leds à différentes fréquences.
+3. Allume la led pendant un certain temps après avoir appuyer sur le bouton.
+
 
 ## Analogique
 Conversion analogique numériques
