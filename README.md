@@ -142,6 +142,8 @@ void loop() {
 }
 ```
 
+Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microsecondes sont respectivement [`delayMicroseconds(us)`](https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/) et [`micros()`](https://www.arduino.cc/reference/en/language/functions/time/micros/)
+
 ### Challenges
 1. Fait clignoter une led irrégulièrement.
 2. Fait clignoter deux leds à différentes fréquences.
@@ -152,6 +154,8 @@ void loop() {
 Conversion analogique numériques
 Lecture
 Pas d'écriture analogique mais PWM
+
+
 [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/)
 [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/)
 
