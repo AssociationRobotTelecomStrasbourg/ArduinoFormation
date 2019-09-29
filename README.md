@@ -1,3 +1,18 @@
+<!-- TOC -->
+
+- [Formation Arduino](#formation-arduino)
+  - [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
+  - [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
+    - [Challenge](#challenge)
+  - [Gestion du temps](#gestion-du-temps)
+    - [Challenges](#challenges)
+  - [Analogique](#analogique)
+  - [Communication Série](#communication-s%C3%A9rie)
+  - [Fonctions diverses](#fonctions-diverses)
+  - [Interruption](#interruption)
+
+<!-- /TOC -->
+
 # Formation Arduino
 
 ## Spécificités de programmation
@@ -122,6 +137,7 @@ void loop() {
   else
     digitalWrite(LED, LOW);
 }
+```
 
 ### Challenges
 1. Fait clignoter une led irrégulièrement.
