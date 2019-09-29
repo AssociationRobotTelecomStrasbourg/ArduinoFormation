@@ -151,14 +151,9 @@ Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microse
 
 
 ## Analogique
-Conversion analogique numériques
-Lecture
-Pas d'écriture analogique mais PWM
+Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). Cette fonction renvoie une valeur entre 0 et 1023 (CAN 10 bits).
 
-
-[`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/)
-[`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/)
-
+L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255.
 
 ## Communication Série
 Vitesse de communication
