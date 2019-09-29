@@ -104,7 +104,7 @@ pinMode(BUTTON, INPUT_PULLUP);
 - Inverse la position du bouton pour allumer la led par rapport au programme précédent.
 
 ## Gestion du temps
-Sur Arduino, deux méthode existent pour interagir avec le temps.
+Sur Arduino, deux méthodes principales existent pour interagir avec le temps.
 
 [`delay(ms)`](https://www.arduino.cc/reference/en/language/functions/time/delay/) arrête le programme pendant un certain temps donné en millisecondes. On appel ce mode de fonctionnement bloquant car on ne peut faire autre chose à côté.
 
@@ -187,3 +187,7 @@ Activation/désactivation
 [`detachInterrupt(digitalPinToInterrupt(pin))`](https://www.arduino.cc/reference/en/language/functions/external-interrupts/detachinterrupt/)
 [`interrupts()`](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)
 [`noInterrupts()`](https://www.arduino.cc/reference/en/language/functions/interrupts/nointerrupts/)
+
+## Pour aller plus loin
+N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait que aborder les fonctions les plus utilisé.
+Tu peux aussi regarder les codes des bibliothèques utilisées.
