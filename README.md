@@ -7,6 +7,9 @@
 - [Formation Arduino](#formation-arduino)
   - [Sommaire](#sommaire)
   - [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
+    - [Structure du code](#structure-du-code)
+    - [Type des variables](#type-des-variables)
+    - [Les différents pins](#les-diff%C3%A9rents-pins)
   - [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
     - [Challenge](#challenge)
   - [Gestion du temps](#gestion-du-temps)
@@ -15,6 +18,8 @@
   - [Communication Série](#communication-s%C3%A9rie)
   - [Fonctions diverses](#fonctions-diverses)
   - [Interruption](#interruption)
+    - [Challenge](#challenge-1)
+  - [Pour aller plus loin](#pour-aller-plus-loin)
 
 <!-- /TOC -->
 
