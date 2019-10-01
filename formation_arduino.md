@@ -1,14 +1,17 @@
 # Formation Guide
-- [ ] Schematics with Fritzing
-  - [ ] LED
-  - [ ] Button
-  - [ ] Potentiometer
-  - [ ] Ultrasound
-  - [ ] DC motor
-  - [ ] Servomotor
-  - [ ] Line follow sensor
+## Components
+- [x] LED
+- [x] Button
+- [ ] Potentiometer
+- [ ] Ultrasound
+- [ ] Servomotor
+- [ ] Line follow sensor
+- [ ] DC motor
+
+## Learning methods
 - [ ] Summary
-- [ ] Links for more details
+- [ ] Schematics with Fritzing
+- [x] Links for more details
 - [ ] Quiz
 - [ ] Exercises
 - [ ] Challenges
@@ -17,35 +20,32 @@
 # Content to explain
 
 ## Digital
-- [ ] pinMode()
-- [ ] digitalRead()
-- [ ] digitalWrite()
+- [x] pinMode()
+- [x] digitalRead()
+- [x] digitalWrite()
 
 ## Time
-- [ ] delay()
-- [ ] millis()
+- [x] delay()
+- [x] millis()
 
 ## Analog
-- [ ] analogRead()
-- [ ] analogWrite()
+- [x] analogRead()
+- [x] analogWrite()
 
 ## Serial
-- [ ] begin()
-- [ ] available()
-- [ ] print()/println()
-- [ ] parseInt()
-- [ ] parseFloat()
+- [x] begin()
+- [x] available()
+- [x] print()/println()
+- [x] parseInt()
+- [x] parseFloat()
 
 ## Math
-- [ ] constrain()
-- [ ] map()
+- [x] constrain()
+- [x] map()
 
 ## Random
-- [ ] randomSeed()
-- [ ] random()
+- [x] randomSeed()
+- [x] random()
 
 ## Interrupt
-- [ ] attachInterrupt()
-- [ ] detachInterrupt()
-- [ ] interrupts()
-- [ ] noInterrupts()
+- [x] attachInterrupt()
