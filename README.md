@@ -19,6 +19,7 @@
 <!-- /TOC -->
 
 ## Spécificités de programmation
+### Structure du code
 Un programme Arduino utilise le langage C/C++.
 ```c++
 // Programme Arduino
@@ -39,9 +40,13 @@ void main() {
 }
 ```
 
+### Type des variables
 On n'utilise pas ici `int`, `long`, `short`, `unsigned` car les tailles en mémoire varie selon les systèmes choisis.
 
 On utilise `intX_t`, `uintX_t` (e.g. `int8_t` pour un entier signé sur 8 bits, `uint32_t` pour un entier non signé sur 32 bits).
+
+### Les différents pins
+Dans le programme les pins D2, …, D13 sont appelées 2, …, 13 et A0, …, A7 ont utilise A0, …, A7.
 
 ## Entrées/Sorties numériques (Digital Input/Output)
 
@@ -156,19 +161,33 @@ Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.ardui
 L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255.
 
 ## Communication Série
-Vitesse de communication
-écriture
-lecture interprétation (parsing)
-[`Serial.begin(speed)`](https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/)
-[`Serial.available()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/available/)
+La communication série relie un ordinateur à l'Arduino.
+
+Pour initialiser la communication il faut utiliser [`Serial.begin(speed)`](https://www.arduino.cc/reference/en/language/functions/communication/serial/begin/)
+en choisissant la vitesse de communication (baud rate) généralement réglé à 9600.
+
+Pour envoyer un message de l'arduino on peut utiliser
 [`Serial.print(val)`](https://www.arduino.cc/reference/en/language/functions/communication/serial/print/)
-[`Serial.println(val)`](https://www.arduino.cc/reference/en/language/functions/communication/serial/println/)
-[`Serial.parseInt()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/parseint/)
-[`Serial.parseFloat()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/parsefloat/)
-[`Serial.readString()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/readstring/)
+ou
+[`Serial.println(val)`](https://www.arduino.cc/reference/en/language/functions/communication/serial/println/) qui revient à la ligne.
+La valeur envoyer peut être un entier, un flottant, un caractère ou une chaîne de caractères.
+
+[`Serial.available()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/available/) renvoie le nombre d'octets à lire. On peut s'en servir pour savoir si un message est arrivé.
+```c++
+if (Serial.available() > 0) {
+   // Do something
+}
+```
+
+[`Serial.parseInt()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/parseint/) interprète le message pour renvoyer le premier entier dans le message.
+
+[`Serial.parseFloat()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/parsefloat/) interprète le message pour renvoyer le premier flottant dans le message.
+
+[`Serial.readString()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/readstring/) interprète le message pour renvoyer le premier mot dans le message.
 
 ## Fonctions diverses
-Voici diverses fonctions que Arduino fournit pour divers usages.
+Voici diverses fonctions Arduino qu'il est intéressant de connaître.
+
 Pour générer des nombres aléatoires:
 - [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/)
 - [`randomSeed(seed)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/)
@@ -180,12 +199,42 @@ Pour appliquer une fonction affine sur une valeur sans se tirer les cheveux:
 [`map(value, fromLow, fromHigh, toLow, toHigh)`](https://www.arduino.cc/reference/en/language/functions/math/map/)
 
 ## Interruption
-Qu'est ce que c'est?
-Activation/désactivation
+Une interruption Arduino permet d'exécuter une fonction quand l'état d'une pin change.
+
+Les différents changements possible sont:
+- `LOW`
+- `CHANGE`
+- `RISING`
+- `FALLING`
+
+Juste les pins 2 et 3 peuvent être utilisé pour les interruptions.
+
 [`attachInterrupt(digitalPinToInterrupt(pin), ISR, mode)`](https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
-[`detachInterrupt(digitalPinToInterrupt(pin))`](https://www.arduino.cc/reference/en/language/functions/external-interrupts/detachinterrupt/)
-[`interrupts()`](https://www.arduino.cc/reference/en/language/functions/interrupts/interrupts/)
-[`noInterrupts()`](https://www.arduino.cc/reference/en/language/functions/interrupts/nointerrupts/)
+
+```c++
+const uint8_t LED 13;
+const uint8_t BUTTON 2;
+
+uint16_t counter = 0;
+
+void increment() {
+  counter++;
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED, OUTPUT);
+  attachInterrupt(digitalPinToInterrupt(2), increment, RISING);
+}
+
+void loop() {
+  Serial.println(counter);
+  delay(500);
+}
+```
+
+### Challenge
+- Faire un anti-rebond.
 
 ## Pour aller plus loin
 N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait que aborder les fonctions les plus utilisé.
