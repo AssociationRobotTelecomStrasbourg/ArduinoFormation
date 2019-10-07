@@ -158,7 +158,7 @@ Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microse
 1. Fait clignoter une led irrégulièrement.
 2. Fait clignoter deux leds à différentes fréquences.
 3. Allume la led pendant un certain temps après avoir appuyer sur le bouton.
-
+4. Change l'état de la led à chaque appuie du bouton.
 
 ## Analogique
 Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). Cette fonction renvoie une valeur entre 0 et 1023 (CAN 10 bits).
