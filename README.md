@@ -1,25 +1,29 @@
 # Formation Arduino
 
+## To Do
+- [ ] Schematics with Fritzing
+    - [x] LED
+    - [x] Button
+    - [ ] Potentiometer
+    - [ ] Ultrasound
+    - [ ] Servomotor
+- [ ] Use submodule for the library
+
 ## Sommaire
 
 <!-- TOC -->
 
-- [Formation Arduino](#formation-arduino)
-  - [Sommaire](#sommaire)
-  - [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
+- [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
     - [Structure du code](#structure-du-code)
     - [Type des variables](#type-des-variables)
     - [Les différents pins](#les-diff%C3%A9rents-pins)
-  - [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
-    - [Challenge](#challenge)
-  - [Gestion du temps](#gestion-du-temps)
-    - [Challenges](#challenges)
-  - [Analogique](#analogique)
-  - [Communication Série](#communication-s%C3%A9rie)
-  - [Fonctions diverses](#fonctions-diverses)
-  - [Interruption](#interruption)
-    - [Challenge](#challenge-1)
-  - [Pour aller plus loin](#pour-aller-plus-loin)
+- [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
+- [Gestion du temps](#gestion-du-temps)
+- [Analogique](#analogique)
+- [Communication Série](#communication-s%C3%A9rie)
+- [Fonctions diverses](#fonctions-diverses)
+- [Interruption](#interruption)
+- [Pour aller plus loin](#pour-aller-plus-loin)
 
 <!-- /TOC -->
 
@@ -75,14 +79,18 @@ On règle l'état d'une pin dans le mode `OUTPUT` avec
 On lit l'état d'une pin qui est dans le mode `INPUT` avec
 [`digitalRead(pin)`](https://www.arduino.cc/reference/en/language/functions/digital-io/digitalread/) qui retourne l'état commme précédemment.
 
+### Allumer une led
 
 ![led](resources/led.png)
+- Attention à brancher la led dans le bon sens.
+- Il faut toujours utiliser une résistance pour protéger la led.
+
 ```c++
 const uint8_t LED 13;
 
 void setup() {
-  pinMode(LED, OUTPUT);
-  digitalWrite(LED, HIGH);
+  pinMode(LED, OUTPUT); // Configure la pin de la led en sortie
+  digitalWrite(LED, HIGH); // Allume la led.
 }
 
 void loop() {
@@ -90,7 +98,13 @@ void loop() {
 }
 ```
 
+### Contrôler une led avec un bouton
+
 ![button_extern_pullup](resources/button_extern_pullup.png)
+- Le bouton est à l'état au haut au repos et l'état bas quand il est appuyé.
+- Le bouton est relié à la masse d'un côté et à l'entrée numérique de l'autre.
+- Une pull-up est ajouté pour fixer l'état haut ([Pull-up - Wikipédia](https://fr.wikipedia.org/wiki/R%C3%A9sistance_de_rappel))
+
 ```c++
 const uint8_t LED 13;
 const uint8_t BUTTON 2;
@@ -106,12 +120,15 @@ void loop() {
 ```
 
 ![button_intern_pullup](resources/button_intern_pullup.png)
+- L'Arduino dispose d'une résistance de pull-up interne.
+- On peut ainsi enlever la pull-up externe et modifier le programme pour l'utiliser.
+
 ```c++
 pinMode(BUTTON, INPUT_PULLUP);
 ```
 
 ### Challenge
-- Inverse la position du bouton pour allumer la led par rapport au programme précédent.
+- Inverse l'allumage de la led selon la position du bouton par rapport au programme précédent.
 
 ## Gestion du temps
 Sur Arduino, deux méthodes principales existent pour interagir avec le temps.
