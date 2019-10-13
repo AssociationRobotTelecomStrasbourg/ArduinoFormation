@@ -4,7 +4,7 @@
 - [ ] Schematics with Fritzing
     - [x] LED
     - [x] Button
-    - [ ] Potentiometer
+    - [x] Potentiometer
     - [ ] Ultrasound
     - [ ] Servomotor
 - [ ] Use submodule for the library
@@ -86,7 +86,7 @@ On lit l'état d'une pin qui est dans le mode `INPUT` avec
 - Il faut toujours utiliser une résistance pour protéger la led.
 
 ```c++
-const uint8_t LED 13;
+const uint8_t LED = 13;
 
 void setup() {
   pinMode(LED, OUTPUT); // Configure la pin de la led en sortie
@@ -106,16 +106,16 @@ void loop() {
 - Une pull-up est ajouté pour fixer l'état haut ([Pull-up - Wikipédia](https://fr.wikipedia.org/wiki/R%C3%A9sistance_de_rappel))
 
 ```c++
-const uint8_t LED 13;
-const uint8_t BUTTON 2;
+const uint8_t LED = 13;
+const uint8_t BUTTON = 2;
 
 void setup() {
-  pinMode(LED, OUTPUT);
-  pinMode(BUTTON, INPUT);
+  pinMode(LED, OUTPUT); // Led en mode sortie
+  pinMode(BUTTON, INPUT); // Bouton en mode entrée
 }
 
 void loop() {
-  digitalWrite(LED, digitalRead(BUTTON));
+  digitalWrite(LED, digitalRead(BUTTON)); // La led prend l'état du bouton
 }
 ```
 
@@ -124,7 +124,17 @@ void loop() {
 - On peut ainsi enlever la pull-up externe et modifier le programme pour l'utiliser.
 
 ```c++
-pinMode(BUTTON, INPUT_PULLUP);
+const uint8_t LED = 13;
+const uint8_t BUTTON = 2;
+
+void setup() {
+  pinMode(LED, OUTPUT); // Led en mode sortie
+  pinMode(BUTTON, INPUT_PULLUP); // Bouton en mode entrée avec pull-up
+}
+
+void loop() {
+  digitalWrite(LED, digitalRead(BUTTON)); // La led prend l'état du bouton
+}
 ```
 
 ### Challenge
@@ -138,30 +148,31 @@ Sur Arduino, deux méthodes principales existent pour interagir avec le temps.
 On peut ainsi faire clignoter une led.
 
 ```c++
-const uint8_t LED 13;
+const uint8_t LED = 13;
 
 void setup() {
   pinMode(LED, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(LED, HIGH);
-  delay(500);
-  digitalWrite(LED, LOW);
-  delay(500);
+  digitalWrite(LED, HIGH); // Allume la led
+  delay(500); // Attend 500 millisecondes
+  digitalWrite(LED, LOW); // Éteind la led
+  delay(500); // Attend 500 millisecondes
 }
 ```
 
 [`millis()`](https://www.arduino.cc/reference/en/language/functions/time/millis/) renvoie le temps écoulé le démarrage de l'arduino en millisecondes.
 
 ```c++
-const uint8_t LED 13;
+const uint8_t LED = 13;
 
 void setup() {
   pinMode(LED, OUTPUT);
 }
 
 void loop() {
+  // Test si il faut allumer ou éteindre la led
   if (millis() % 1000 < 500)
     digitalWrite(LED, HIGH);
   else
@@ -178,9 +189,28 @@ Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microse
 4. Change l'état de la led à chaque appuie du bouton.
 
 ## Analogique
-Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). Cette fonction renvoie une valeur entre 0 et 1023 (CAN 10 bits).
+Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). Cette fonction renvoie une valeur entre 0 et 1023 (CAN 10 bits). On peut utiliser les pins `A0`, …, `A7` mesurer une tension.
 
-L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255.
+L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255. On peut utiliser les pins `3`, `5`, `6`, `9`, `10`, `11` pour générer un signal PWM.
+
+![pot_led](resources/pot_led.png)
+- On utilise la position du potentiomètre pour changer l'intensité de la led.
+
+```c++
+const uint8_t LED_PWM = 3;
+const uint8_t POT = A0;
+
+void setup() {
+
+}
+
+void loop() {
+  analogWrite(LED_PWM, analogRead(POT)/4); // Règle l'intensité de la led avec le potentiomètre
+}
+```
+
+### Challenge
+- Inverse le sens du potentiomètre dans le code
 
 ## Communication Série
 La communication série relie un ordinateur à l'Arduino.
@@ -257,6 +287,33 @@ void loop() {
 
 ### Challenge
 - Faire un anti-rebond.
+
+## Servomoteur
+Pour contrôler un servomoteur on utilise une bibliothèque nommé Servo.
+
+![servo_pot](resources/servo_pot.png)
+
+```c++
+#include <Servo.h> // On utilise la bibliothèque Servo
+
+const uint8_t SERVO = 5;
+const uint8_t POT = A0;
+
+uint16_t pot_value; // Contient la valeur du potentiomètre
+
+Servo servo; // Déclaration de l'objet servo
+
+void setup() {
+    servo.attach(SERVO); // On utilise la pin dans SERVO pour contrôler le servo
+}
+
+void loop() {
+  pot_value = analogRead(POT); // Lit la valeur du potentiomètre
+  pot_value = map(pot_value, 0, 1023, 0, 180); // Convertit la valeur du potentiomètre en commande pour le servo
+  servo.write(pot_value); // Envoie la position à atteindre au servo
+  delay(15); // Attend 15 millisecondes
+}
+```
 
 ## Pour aller plus loin
 N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait que aborder les fonctions les plus utilisé.
