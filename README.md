@@ -57,6 +57,22 @@ On utilise `intX_t`, `uintX_t` (e.g. `int8_t` pour un entier signé sur 8 bits, 
 ### Les différents pins
 Dans le programme les pins D2, …, D13 sont appelées 2, …, 13 et A0, …, A7 ont utilise A0, …, A7.
 
+### Le bouton reset
+Au milieu de l'Arduino, le bouton reset permet de redémarrer le programme (i.e. arrête ce qu'elle fait et exécute `setup()` puis `loop()` en boucle).
+
+### Fonctions diverses
+Les fonctions suivantes seront utilisé plus tard
+
+Pour utilisé de l'aléatoire
+- [`randomSeed(seed)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/) pour initialiser le générateur
+- [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/) pour générer un nombre aléatoires
+
+Pour borner une valeur dans un intervalle:
+[`constrain(x, a, b)`](https://www.arduino.cc/reference/en/language/functions/math/constrain/)
+
+Pour appliquer une fonction affine sur une valeur sans se tirer les cheveux:
+[`map(value, fromLow, fromHigh, toLow, toHigh)`](https://www.arduino.cc/reference/en/language/functions/math/map/)
+
 ## Entrées/Sorties numériques (Digital Input/Output)
 
 Les signaux numériques sont des 0 et 1 représentés par GND (0V) et VCC (5V) pour Arduino Uno et Nano.
@@ -200,17 +216,27 @@ L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(p
 const uint8_t LED_PWM = 3;
 const uint8_t POT = A0;
 
+uint16_t pot_value;
+uint8_t led_intensity;
+
 void setup() {
 
 }
 
 void loop() {
-  analogWrite(LED_PWM, analogRead(POT)/4); // Règle l'intensité de la led avec le potentiomètre
+    pot_value = analogRead(POT); // Lit la valeur
+    led_intensity = pot_value / 4; // Calcul l'intensité de la led
+    analogWrite(LED_PWM, led_intensity); // Règle l'intensité de la led
 }
 ```
 
-### Challenge
+### Bonus
+Tu as maintenant toute les connaissances pour utiliser les fonctions pour faire de l'aléatoire.
+
+### Challenges
 - Inverse le sens du potentiomètre dans le code
+- Utilise `map()` pour calculer l'intensité de la led. Est ce plus simple de faire le challenge précédent avec `map()` ?
+- Fait clignoter aléatoirement la led
 
 ## Communication Série
 La communication série relie un ordinateur à l'Arduino.
@@ -237,18 +263,24 @@ if (Serial.available() > 0) {
 
 [`Serial.readString()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/readstring/) interprète le message pour renvoyer le premier mot dans le message.
 
-## Fonctions diverses
-Voici diverses fonctions Arduino qu'il est intéressant de connaître.
+```c++
+#include <Arduino.h>
+#include <Servo.h>
 
-Pour générer des nombres aléatoires:
-- [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/)
-- [`randomSeed(seed)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/)
+int32_t message;
 
-Pour borner une valeur dans un intervalle:
-[`constrain(x, a, b)`](https://www.arduino.cc/reference/en/language/functions/math/constrain/)
+void setup() {
+    Serial.begin(9600);
+}
 
-Pour appliquer une fonction affine sur une valeur sans se tirer les cheveux:
-[`map(value, fromLow, fromHigh, toLow, toHigh)`](https://www.arduino.cc/reference/en/language/functions/math/map/)
+void loop() {
+    if (Serial.available() > 0) { // Vérifie si l'on a reçu un message
+        message = Serial.parseInt(); // Lit et stocke l'entier
+        Serial.print("Echo: "); // Envoie "Echo: "
+        Serial.println(message); // Envoie l'entier avec un retour à la ligne
+    }
+}
+```
 
 ## Interruption
 Une interruption Arduino permet d'exécuter une fonction quand l'état d'une pin change.
