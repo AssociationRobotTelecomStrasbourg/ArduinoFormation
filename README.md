@@ -282,6 +282,12 @@ void loop() {
 }
 ```
 
+### Challenges
+- Remplace l'entier par un nombre flottant
+- Remplace l'entier par une chaîne de caractère
+- Contrôle une led
+- Renvoie la position d'un bouton ou potentiomètre
+
 ## Interruption
 Une interruption Arduino permet d'exécuter une fonction quand l'état d'une pin change.
 
@@ -293,37 +299,52 @@ Les différents changements possible sont:
 
 Juste les pins 2 et 3 peuvent être utilisé pour les interruptions.
 
+La fonction d'interruption doit être la plus rapide possible pour ne pas empêcher le bon fonctionnement du reste du code.
+
 [`attachInterrupt(digitalPinToInterrupt(pin), ISR, mode)`](https://www.arduino.cc/reference/en/language/functions/external-interrupts/attachinterrupt/)
 
+- Ce programme incrémente un compteur à l'appuie du bouton.
+
 ```c++
-const uint8_t LED 13;
-const uint8_t BUTTON 2;
+const uint8_t LED = 13;
+const uint8_t BUTTON = 2;
 
 uint16_t counter = 0;
 
+// C'est la fonction appelé pendant l'interruption
 void increment() {
   counter++;
 }
 
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(9600); // Initialise la vitesse de communication
   pinMode(LED, OUTPUT);
-  attachInterrupt(digitalPinToInterrupt(2), increment, RISING);
+  attachInterrupt(digitalPinToInterrupt(2), increment, FALLING); // Exécute la fonction increment quand le signal chute sur la pin 2
 }
 
 void loop() {
-  Serial.println(counter);
-  delay(500);
+  Serial.println(counter); // Affiche le nombre de chute du signal
+  delay(500); // Attend 500 ms
 }
 ```
 
 ### Challenge
+- Incrémente le compteur au lâcher
 - Faire un anti-rebond.
 
 ## Servomoteur
-Pour contrôler un servomoteur on utilise une bibliothèque nommé Servo.
+Un servomoteur est un moteur dont on peut contrôler la position.
+
+Tu peux en utiliser plusieurs.
+
+La position du moteur est envoyé par PWM.
+
+Le contrôle d'un servomoteur est complexe c'est pourquoi on va utiliser la bibliothèque `Servo.h` de Arduino.
 
 ![servo_pot](resources/servo_pot.png)
+- le servomoteur a besoin de 5V (cable rouge)
+- la masse est généralement le cable le plus sombre
+- le cable jaune est à relier à une pin qui peut générer du PWM
 
 ```c++
 #include <Servo.h> // On utilise la bibliothèque Servo
@@ -346,6 +367,43 @@ void loop() {
   delay(15); // Attend 15 millisecondes
 }
 ```
+
+## Capteur ultrason
+Le capteur ultrason que tu vas utiliser est un capteur temps de vol. Il donne la distance entre lui et un obstacle en mesurant le temps de l'aller retour d'une onde sonnore puis applique ratio pour obtenir la distance.
+
+Tu peux en utiliser plusieurs.
+
+![ultra_servo](resources/ultra_servo.png)
+
+```c++
+#include <ultrasonic.h> // Inclusion de la bibliothèque pour utiliser des capteurs ultrasons
+
+// Déclaration des pins du capteur ultrason
+const uint8_t TRIG = 6;
+const uint8_t ECHO = 7;
+
+Ultrasonic ultrasonic(TRIG, ECHO); // Initialisation du capteur ultrason
+uint32_t ultra_distance; // Stocke la distance mesuré par le capteur ultrason
+
+void setup() {
+    Serial.begin(9600); // Initialisation de la communication série
+}
+
+void loop()
+
+{
+    ultra_value = ultrasonic.distance(); // Lecture de la distance
+
+    // Affichage de la lecture
+    Serial.print(ultra_value);
+    Serial.println(" cm");
+
+    delay(100); // Attend 100 ms
+}
+```
+
+### Challenge
+- Fait bouger le servomoteur en fonction de la distance
 
 ## Pour aller plus loin
 N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait que aborder les fonctions les plus utilisé.
