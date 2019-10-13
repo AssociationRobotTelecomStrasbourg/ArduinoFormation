@@ -1,0 +1,3 @@
+[submodule "lib/Ultrasonic"]
+	path = lib/Ultrasonic
+	url = git@github.com:AssociationRobotTelecomStrasbourg/Ultrasonic.git
