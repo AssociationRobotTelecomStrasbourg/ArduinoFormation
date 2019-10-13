@@ -1,32 +1,5 @@
 # Formation Arduino
 
-## To Do
-- [ ] Schematics with Fritzing
-    - [x] LED
-    - [x] Button
-    - [x] Potentiometer
-    - [ ] Ultrasound
-    - [ ] Servomotor
-- [ ] Use submodule for the library
-
-## Sommaire
-
-<!-- TOC -->
-
-- [Spécificités de programmation](#sp%C3%A9cificit%C3%A9s-de-programmation)
-    - [Structure du code](#structure-du-code)
-    - [Type des variables](#type-des-variables)
-    - [Les différents pins](#les-diff%C3%A9rents-pins)
-- [Entrées/Sorties numériques (Digital Input/Output)](#entr%C3%A9essorties-num%C3%A9riques-digital-inputoutput)
-- [Gestion du temps](#gestion-du-temps)
-- [Analogique](#analogique)
-- [Communication Série](#communication-s%C3%A9rie)
-- [Fonctions diverses](#fonctions-diverses)
-- [Interruption](#interruption)
-- [Pour aller plus loin](#pour-aller-plus-loin)
-
-<!-- /TOC -->
-
 ## Spécificités de programmation
 ### Structure du code
 Un programme Arduino utilise le langage C/C++.
@@ -406,5 +379,6 @@ void loop()
 - Fait bouger le servomoteur en fonction de la distance
 
 ## Pour aller plus loin
-N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait que aborder les fonctions les plus utilisé.
-Tu peux aussi regarder les codes des bibliothèques utilisées.
+- N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait qu'aborder les fonctions les plus utilisées.
+- Tu peux aussi regarder les codes des bibliothèques utilisées dans le dossier `lib`
+- La documentation du capteur ultrason [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf)
