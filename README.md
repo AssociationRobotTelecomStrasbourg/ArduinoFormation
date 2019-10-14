@@ -1,4 +1,4 @@
-# Formation Arduino
+// Déclare la# Formation Arduino
 
 ## Spécificités de programmation
 ### Structure du code
@@ -38,7 +38,7 @@ Les fonctions suivantes seront utilisé plus tard
 
 Pour utilisé de l'aléatoire
 - [`randomSeed(seed)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/) pour initialiser le générateur
-- [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/) pour générer un nombre aléatoires
+- [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/) pour générer un nombre aléatoire
 
 Pour borner une valeur dans un intervalle:
 [`constrain(x, a, b)`](https://www.arduino.cc/reference/en/language/functions/math/constrain/)
@@ -92,7 +92,7 @@ On lit l'état d'une pin qui est dans le mode `INPUT` avec
 - Il faut toujours utiliser une résistance pour protéger la led.
 
 ```c++
-// Déclaration de la pin pour
+// Déclare la la pin pour
 const uint8_t LED = 13; // la led
 
 void setup() {
@@ -113,11 +113,11 @@ void loop() {
 - Une pull-up est ajouté pour fixer l'état haut ([Pull-up - Wikipédia](https://fr.wikipedia.org/wiki/R%C3%A9sistance_de_rappel))
 
 ```c++
-// Déclaration des pins pour
+// Déclare les pins pour
 const uint8_t LED = 13; // la led
 const uint8_t BUTTON = 2; // le bouton
 
-uint8_t button_state;
+uint8_t button_state; // État du bouton
 
 void setup() {
 	pinMode(LED, OUTPUT); // Led en mode sortie
@@ -135,11 +135,11 @@ void loop() {
 - On peut ainsi enlever la pull-up externe et modifier le programme pour l'utiliser.
 
 ```c++
-// Déclaration des pins pour
+// Déclare les pins pour
 const uint8_t LED = 13; // la led
 const uint8_t BUTTON = 2; // le bouton
 
-uint8_t button_state;
+uint8_t button_state; // État du bouton
 
 void setup() {
 	pinMode(LED, OUTPUT); // Led en mode sortie
@@ -163,7 +163,7 @@ Sur Arduino, deux méthodes principales existent pour interagir avec le temps.
 On peut ainsi faire clignoter une led.
 
 ```c++
-// Déclaration de la pin pour
+// Déclare la la pin pour
 const uint8_t LED = 13; // la led
 
 const uint32_t time = 500; // Temps d'attente
@@ -173,7 +173,6 @@ void setup() {
 }
 
 void loop() {
-	// Clignote toute les secondes
 	digitalWrite(LED, HIGH); // Allume la led
 	delay(time); // Attend time millisecondes
 	digitalWrite(LED, LOW); // Éteind la led
@@ -184,7 +183,7 @@ void loop() {
 [`millis()`](https://www.arduino.cc/reference/en/language/functions/time/millis/) renvoie le temps écoulé le démarrage de l'arduino en millisecondes.
 
 ```c++
-// Déclaration de la pin pour
+// Déclare la pin pour
 const uint8_t LED = 13; // la led
 
 const uint32_t time = 500; // Temps d'attente
@@ -216,22 +215,23 @@ L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(p
 
 ![pot_led](resources/pot_led.png)
 - On utilise la position du potentiomètre pour changer l'intensité de la led.
+- `pinMode(pin, mode)` est uniquement pour les entrées/sorties numérique. C'est inutile pour celles analogiques.
 
 ```c++
-// Déclaration des pins pour
+// Déclare les pins pour
 const uint8_t LED_PWM = 3; // la led contrôlée en PWM
 const uint8_t POT = A0; // le potentiomètre
 
-uint16_t pot_value;
-uint8_t led_intensity;
+uint16_t pot_position; // Position du potentiomètre
+uint8_t led_intensity; // Intensité de la led
 
 void setup() {
 
 }
 
 void loop() {
-	pot_value = analogRead(POT); // Lit la valeur
-	led_intensity = pot_value / 4; // Calcul l'intensité de la led
+	pot_position = analogRead(POT); // Lit la valeur
+	led_intensity = pot_position / 4; // Calcul l'intensité de la led
 	analogWrite(LED_PWM, led_intensity); // Règle l'intensité de la led
 }
 ```
@@ -270,17 +270,17 @@ if (Serial.available() > 0) {
 [`Serial.readString()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/readstring/) interprète le message pour renvoyer le premier mot dans le message.
 
 ```c++
-int32_t entier;
+int32_t received_data; // Entier reçu
 
 void setup() {
-	Serial.begin(9600);
+	Serial.begin(9600); // Initialise la communication série
 }
 
 void loop() {
-	if (Serial.available() > 0) { // Vérifie si l'on a reçu un entier
-		entier = Serial.parseInt(); // Lit et stocke l'entier
+	if (Serial.available() > 0) { // Test si l'on a reçu des données
+		received_data = Serial.parseInt(); // Reçois et stocke l'entier
 		Serial.print("Echo: "); // Envoie "Echo: "
-		Serial.println(entier); // Envoie l'entier avec un retour à la ligne
+		Serial.println(received_data); // Envoie l'entier avec un retour à la ligne
 	}
 }
 ```
@@ -309,20 +309,20 @@ La fonction d'interruption doit être la plus rapide possible pour ne pas empêc
 - Ce programme incrémente un compteur à l'appuie du bouton.
 
 ```c++
-// Déclaration des pins pour
+// Déclare les pins pour
 const uint8_t LED = 13; // la led
 const uint8_t BUTTON = 2; // le bouton
 
-uint16_t counter = 0;
+uint16_t counter = 0; // Compteur d'appuie
 
-// C'est la fonction appelé pendant l'interruption
+// Fonction appelée pendant l'interruption
 void increment() {
-	counter++;
+	counter++; // Incrémente le compteur
 }
 
 void setup() {
-	Serial.begin(9600); // Initialise la vitesse de communication
-	pinMode(LED, OUTPUT);
+	Serial.begin(9600); // Initialise la communication série
+	pinMode(LED, OUTPUT); // Led en mode sortie
 	attachInterrupt(digitalPinToInterrupt(2), increment, FALLING); // Exécute la fonction increment quand le signal chute sur la pin 2
 }
 
@@ -351,24 +351,25 @@ Le contrôle d'un servomoteur est complexe c'est pourquoi on va utiliser la bibl
 - le cable jaune est à relier à une pin qui peut générer du PWM
 
 ```c++
-#include <Servo.h> // Bibliothèque pour utiliser des servomoteurs
+#include <Servo.h> // Bibliothèque pour les servomoteurs
 
-// Déclaration des pins pour
+// Déclare les pins pour
 const uint8_t SERVO = 5; // le servomoteur
 const uint8_t POT = A0; // le potentiomètre
 
-uint16_t pot_value; // Stocke la valeur du potentiomètre
+uint16_t pot_position; // Position du potentiomètre
+uint8_t servo_position; // Position du servomoteur
 
-Servo servo; // Initialisation du servomoteur
+Servo servo; // Initialise le servomoteur
 
 void setup() {
 	servo.attach(SERVO); // On utilise la pin SERVO pour contrôler le servomoteur
 }
 
 void loop() {
-	pot_value = analogRead(POT); // Lit la valeur du potentiomètre
-	pot_value = map(pot_value, 0, 1023, 0, 180); // Convertit la valeur du potentiomètre en commande pour le servo
-	servo.write(pot_value); // Envoie la position à atteindre au servo
+	pot_position = analogRead(POT); // Lit la position du potentiomètre
+	servo_position = map(pot_position, 0, 1023, 0, 180); // Convertit la position du potentiomètre en position pour le servo
+	servo.write(servo_position); // Envoie la position à atteindre au servo
 	delay(15); // Attend 15 millisecondes
 }
 ```
@@ -381,23 +382,23 @@ Tu peux en utiliser plusieurs.
 ![ultra_servo](resources/ultra_servo.png)
 
 ```c++
-#include <ultrasonic.h> // Bibliothèque pour utiliser des capteurs ultrasons
+#include <ultrasonic.h> // Bibliothèque pour les capteurs ultrasons
 
-// Déclaration des pins du capteur ultrason
-const uint8_t TRIG = 6;
-const uint8_t ECHO = 7;
+// Déclare les pins du capteur ultrason
+const uint8_t TRIG = 6; // Trigger
+const uint8_t ECHO = 7; // Echo
 
-Ultrasonic ultrasonic(TRIG, ECHO); // Initialisation du capteur ultrason
+Ultrasonic ultrasonic(TRIG, ECHO); // Initialise le capteur ultrason
 uint32_t ultra_distance; // Stocke la distance mesuré par le capteur ultrason
 
 void setup() {
-	Serial.begin(9600); // Initialisation de la communication série
+	Serial.begin(9600); // Initialise la communication série
 }
 
 void loop() {
-	ultra_distance = ultrasonic.distance(); // Lecture de la distance
+	ultra_distance = ultrasonic.distance(); // Lit la distance
 
-	// Affichage de la lecture
+	// Affiche la distance
 	Serial.print(ultra_distance);
 	Serial.println(" cm");
 
