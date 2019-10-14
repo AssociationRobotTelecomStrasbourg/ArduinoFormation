@@ -1,4 +1,4 @@
-// Déclare la# Formation Arduino
+# Formation Arduino
 
 ## Spécificités de programmation
 ### Structure du code
