@@ -203,7 +203,7 @@ void loop() {
 Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microsecondes sont respectivement [`delayMicroseconds(us)`](https://www.arduino.cc/reference/en/language/functions/time/delaymicroseconds/) et [`micros()`](https://www.arduino.cc/reference/en/language/functions/time/micros/)
 
 ### Challenges
-1. Fait clignoter une led irrégulièrement.
+1. Fait clignoter une led qui reste allumée plus longtemps qu'elle n'est éteinte.
 2. Fait clignoter deux leds à différentes fréquences.
 3. Allume la led pendant un certain temps après avoir appuyer sur le bouton.
 4. Change l'état de la led à chaque appuie du bouton.
