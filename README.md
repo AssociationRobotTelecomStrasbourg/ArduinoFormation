@@ -92,7 +92,7 @@ On lit l'état d'une pin qui est dans le mode `INPUT` avec
 - Il faut toujours utiliser une résistance pour protéger la led.
 
 ```c++
-// Déclare la la pin pour
+// Déclare la pin pour
 const uint8_t LED = 13; // la led
 
 void setup() {
@@ -163,7 +163,7 @@ Sur Arduino, deux méthodes principales existent pour interagir avec le temps.
 On peut ainsi faire clignoter une led.
 
 ```c++
-// Déclare la la pin pour
+// Déclare la pin pour
 const uint8_t LED = 13; // la led
 
 const uint32_t time = 500; // Temps d'attente
@@ -408,6 +408,14 @@ void loop() {
 
 ### Challenge
 - Fait bouger le servomoteur en fonction de la distance
+
+### Challenge ++
+
+* Cree une fonction qui renvoie la distance, sans utiliser la librairie *ultrasonic.h* 
+
+  [Hint](https://www.alldatasheet.com/datasheet-pdf/pdf/1132203/ETC2/HC-SR04.html)
+
+   
 
 ## Pour aller plus loin
 - N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait qu'aborder les fonctions les plus utilisées.
