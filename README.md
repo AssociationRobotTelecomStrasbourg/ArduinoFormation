@@ -332,7 +332,7 @@ void loop() {
 }
 ```
 
-### Challenge
+### Challenges
 - Incrémente le compteur au lâcher
 - Faire un anti-rebond.
 
@@ -406,16 +406,11 @@ void loop() {
 }
 ```
 
-### Challenge
+### Challenges
 - Fait bouger le servomoteur en fonction de la distance
+- Crée une fonction qui renvoie la distance, sans utiliser la librairie *ultrasonic.h* [Hint](https://www.alldatasheet.com/datasheet-pdf/pdf/1132203/ETC2/HC-SR04.html)
 
-### Challenge ++
 
-* Cree une fonction qui renvoie la distance, sans utiliser la librairie *ultrasonic.h* 
-
-  [Hint](https://www.alldatasheet.com/datasheet-pdf/pdf/1132203/ETC2/HC-SR04.html)
-
-   
 
 ## Pour aller plus loin
 - N'hésite pas à regarder la [documentation Arduino](https://www.arduino.cc/reference/en/) cette formation n'a fait qu'aborder les fonctions les plus utilisées.
