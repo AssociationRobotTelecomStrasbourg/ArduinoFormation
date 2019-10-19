@@ -1,5 +1,12 @@
 # Formation Arduino
 
+## Informations à rajouter
+- [ ] Des liens web en bleu sont disponibles
+- [ ] Liens explications PWM
+- [ ] Dire qu'il faut utiliser le serial monitor pour la partie série
+- [ ] Ajouter la bibliothèque Servo
+- [ ] compatibilité nano ancien et nouveau bootloader
+
 ## Spécificités de programmation
 ### Structure du code
 Un programme Arduino utilise le langage C/C++.
