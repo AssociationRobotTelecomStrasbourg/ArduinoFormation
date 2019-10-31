@@ -5,7 +5,8 @@
 - [ ] Liens explications PWM
 - [ ] Dire qu'il faut utiliser le serial monitor pour la partie série
 - [ ] Ajouter la bibliothèque Servo
-- [ ] compatibilité nano ancien et nouveau bootloader
+- [ ] Explication pour configurer uno, nano ancien et nouveau bootloader
+- [ ] Enlève servo sur le schéma du capteur ultrason
 
 ## Spécificités de programmation
 ### Structure du code
