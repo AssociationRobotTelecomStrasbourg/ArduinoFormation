@@ -1,12 +1,19 @@
 # Formation Arduino
 
 ## Informations à rajouter
-- [ ] Des liens web en bleu sont disponibles
-- [ ] Liens explications PWM
-- [ ] Dire qu'il faut utiliser le serial monitor pour la partie série
-- [ ] Ajouter la bibliothèque Servo
+- [x] Des liens web en bleu sont disponibles
+- [x] Liens explications PWM
+- [x] Dire qu'il faut utiliser le serial monitor pour la partie série
+- [x] Ajouter la bibliothèque Servo
 - [ ] Explication pour configurer uno, nano ancien et nouveau bootloader
 - [x] Enlève servo sur le schéma du capteur ultrason
+
+## Déroulement
+- Lire les instructions.
+- Cliquer sur les liens en bleu pour plus de détails.
+- Tester les codes
+- Il est conseillé de faire les challenges dans un second temps afin de pouvoir voir l'étendu des possibilités.
+- Une fois ceci fait vous pouvez choisir quel challenge vous intéresse le plus.
 
 ## Spécificités de programmation
 ### Structure du code
@@ -219,7 +226,7 @@ Les équivalents de `delay(ms)` et `millis()` pour manipuler le temps en microse
 ## Analogique
 Pour lire la tension d'une pin, on utilise [`analogRead(pin)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogread/). Cette fonction renvoie une valeur entre 0 et 1023 (CAN 10 bits). On peut utiliser les pins `A0`, …, `A7` mesurer une tension.
 
-L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255. On peut utiliser les pins `3`, `5`, `6`, `9`, `10`, `11` pour générer un signal PWM.
+L'Arduino ne peut pas générer de tension entre 0V et 5V. Mais, [`analogWrite(pin, value)`](https://www.arduino.cc/reference/en/language/functions/analog-io/analogwrite/) peut générer un signal rectangulaire avec un rapport cyclique variable qui a en moyenne la tension voulu. La tension générer est proportionelle à la valeur passé en argument entre 0 et 255. On peut utiliser les pins `3`, `5`, `6`, `9`, `10`, `11` pour générer un signal [PWM](https://en.wikipedia.org/wiki/Pulse-width_modulation/).
 
 ![pot_led](resources/pot_led.png)
 - On utilise la position du potentiomètre pour changer l'intensité de la led.
@@ -276,6 +283,9 @@ if (Serial.available() > 0) {
 [`Serial.parseFloat()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/parsefloat/) interprète le message pour renvoyer le premier flottant dans le message.
 
 [`Serial.readString()`](https://www.arduino.cc/reference/en/language/functions/communication/serial/readstring/) interprète le message pour renvoyer le premier mot dans le message.
+
+
+- Une fois le programme compilé, ouvres le moniteur série (`Alt-Shift-M`)
 
 ```c++
 int32_t received_data; // Entier reçu

@@ -1,3 +1,6 @@
 [submodule "lib/Ultrasonic"]
 	path = lib/Ultrasonic
 	url = https://github.com/AssociationRobotTelecomStrasbourg/Ultrasonic.git
+[submodule "lib/Servo"]
+	path = lib/Servo
+	url = https://github.com/AssociationRobotTelecomStrasbourg/Servo.git
