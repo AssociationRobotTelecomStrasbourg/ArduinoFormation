@@ -6,7 +6,7 @@
 - [ ] Dire qu'il faut utiliser le serial monitor pour la partie série
 - [ ] Ajouter la bibliothèque Servo
 - [ ] Explication pour configurer uno, nano ancien et nouveau bootloader
-- [ ] Enlève servo sur le schéma du capteur ultrason
+- [x] Enlève servo sur le schéma du capteur ultrason
 
 ## Spécificités de programmation
 ### Structure du code
@@ -387,7 +387,7 @@ Le capteur ultrason que tu vas utiliser est un capteur temps de vol. Il donne la
 
 Tu peux en utiliser plusieurs.
 
-![ultra_servo](resources/ultra_servo.png)
+![ultra](resources/ultra.png)
 
 ```c++
 #include <ultrasonic.h> // Bibliothèque pour les capteurs ultrasons
