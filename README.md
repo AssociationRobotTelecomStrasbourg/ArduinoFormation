@@ -7,6 +7,11 @@
 - [x] Ajouter la bibliothèque Servo
 - [x] Enlève servo sur le schéma du capteur ultrason
 - [ ] Explication pour configurer uno, nano ancien et nouveau bootloader
+- [ ] Explication pin / breadboard
+- [ ] Détailler comment utiliser serial monitor
+- [ ] Comment accéder au code
+- [ ] Comment cloner et initialiser les submodules
+- [ ] Explication Pull up (Augustin)
 
 ## Déroulement
 - Lire les instructions.
