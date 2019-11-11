@@ -12,6 +12,10 @@
 - [ ] Comment accéder au code
 - [ ] Comment cloner et initialiser les submodules
 - [ ] Explication Pull up (Augustin)
+- [ ] Technologie
+  - [ ] Codeur
+  - [ ] Télémètre
+  - [ ] Moteur pas à pas
 
 ## Déroulement
 - Lire les instructions.
