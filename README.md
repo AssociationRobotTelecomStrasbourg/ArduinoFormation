@@ -12,6 +12,7 @@
 - [ ] Comment accéder au code
 - [ ] Comment cloner et initialiser les submodules
 - [ ] Explication Pull up (Augustin)
+- [ ] Ajout image Toolbar
 - [ ] Technologie
   - [ ] Codeur
   - [ ] Télémètre
