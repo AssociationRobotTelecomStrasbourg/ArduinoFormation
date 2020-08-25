@@ -48,20 +48,20 @@ void main() {
 ```
 
 ### Type des variables
-On n'utilise pas ici `int`, `long`, `short`, `unsigned` car les tailles en mémoire varie selon les systèmes choisis.
+On n'utilise pas ici `int`, `long`, `short`, `unsigned` car les tailles en mémoire varient selon les systèmes choisis.
 
 On utilise `intX_t`, `uintX_t` (e.g. `int8_t` pour un entier signé sur 8 bits, `uint32_t` pour un entier non signé sur 32 bits).
 
 ### Les différents pins
-Dans le programme les pins D2, …, D13 sont appelées 2, …, 13 et A0, …, A7 ont utilise A0, …, A7.
+Dans le programme les pins D2, …, D13 sont appelées 2, …, 13 et A0, …, A7 on utilise A0, …, A7.
 
 ### Le bouton reset
 Au milieu de l'Arduino, le bouton reset permet de redémarrer le programme (i.e. arrête ce qu'elle fait et exécute `setup()` puis `loop()` en boucle).
 
 ### Fonctions diverses
-Les fonctions suivantes seront utilisé plus tard
+Les fonctions suivantes seront utilisées plus tard
 
-Pour utilisé de l'aléatoire
+Pour utiliser de l'aléatoire
 - [`randomSeed(seed)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/randomseed/) pour initialiser le générateur
 - [`random(min, max)`](https://www.arduino.cc/reference/en/language/functions/random-numbers/random/) pour générer un nombre aléatoire
 
@@ -72,7 +72,7 @@ Pour appliquer une fonction affine sur une valeur sans se tirer les cheveux:
 [`map(value, fromLow, fromHigh, toLow, toHigh)`](https://www.arduino.cc/reference/en/language/functions/math/map/)
 
 ### Utilisation de Platformio
-Nous utilisons Platformio dans Atom pour programmer l'Arduino.
+Nous utilisons Platformio dans Atom ou Visual Studio Code pour programmer l'Arduino.
 
 Il faut toujours ajouter en entête du fichier qui contient la fonction `main()`
 ```c++
